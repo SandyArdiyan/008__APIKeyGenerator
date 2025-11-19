@@ -1,13 +1,11 @@
-// apiKeyRoutes.js
 const express = require("express");
 const router = express.Router();
+// Pastikan nama file di require sesuai dengan nama file asli (apiKeyController.js)
 const apiKeyController = require("../controllers/apiKeyController");
-const auth = require("../middleware/auth"); // <-- TAMBAHKAN: Impor middleware
+const auth = require("../middleware/auth");
 
-// GET semua API key
-router.get("/", auth, apiKeyController.getAllKeys); // <-- TAMBAHKAN: Lindungi rute ini
-
-// Generate API key baru
-router.post("/generate", auth, apiKeyController.generateKey); // <-- TAMBAHKAN: Lindungi rute ini
+router.get("/", auth, apiKeyController.getAllKeys);
+router.get("/:id", auth, apiKeyController.getKeyById); // Fitur baru ambil per ID
+router.post("/generate", auth, apiKeyController.generateKey);
 
 module.exports = router;
